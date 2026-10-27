@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Styler X ♡</title>
+<style>
+:root{--pink:#dfbeba;--rose:#b98082;--cream:#fffaf7;--ink:#5b4548;--muted:#998588;--line:#eedfdd}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--ink);background:linear-gradient(145deg,#fff9f7,#f9efed)}
+button,input,select,textarea{font:inherit}button{cursor:pointer}
+input,textarea,select{color:#171717!important;-webkit-text-fill-color:#171717;caret-color:#171717}
+input::placeholder,textarea::placeholder{color:#847b7b!important;-webkit-text-fill-color:#847b7b;opacity:1}
+input:-webkit-autofill{-webkit-text-fill-color:#171717!important}
+.shell{max-width:950px;margin:auto;min-height:100vh;padding:0 18px 90px}
+header{height:78px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
+.logo{border:0;background:none;font:italic 30px Georgia,serif;color:var(--ink);letter-spacing:1px}
+.iconbtn{background:white;border:1px solid var(--line);border-radius:50%;width:42px;height:42px;font-size:20px}
+.hero{background:linear-gradient(120deg,#ecd0ce,#fff0ea);border-radius:27px;padding:60px 24px;text-align:center;margin:26px 0;box-shadow:0 12px 35px #a66e7613}
+.kicker{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#9b7778}
+h1{font:italic 56px Georgia,serif;margin:10px 0;color:#654b4e}
+h2{font:italic 35px Georgia,serif;margin:0 0 10px}
+p{line-height:1.5;color:var(--muted)}
+.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}
+.card{background:white;border:1px solid var(--line);border-radius:23px;padding:25px;text-align:left;min-height:160px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 8px 24px #9c76750c}
+.card:nth-child(2){background:#f5e6e3}.card strong{font:italic 26px Georgia,serif}.card small{color:var(--muted)}.emoji{font-size:32px}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0}
+.btn{border:0;border-radius:30px;padding:13px 19px;background:var(--rose);color:white;font-weight:600}
+.btn.light{background:#f0deda;color:var(--ink)}.btn.white{background:white;color:var(--ink);border:1px solid var(--line)}
+.pills{display:flex;gap:8px;overflow:auto;padding:8px 0 15px}.pill{white-space:nowrap;background:white;border:1px solid var(--line);border-radius:25px;padding:10px 15px;color:var(--ink)}.pill.active{background:var(--pink)}
+.items{display:grid;grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:13px}
+.item{background:white;border:1px solid var(--line);border-radius:17px;overflow:hidden}.item img{width:100%;aspect-ratio:1;object-fit:cover}.itemfoot{display:flex;align-items:center;justify-content:space-between;padding:10px;font-size:13px}.itemfoot button{border:0;background:none;color:#b7757b;font-size:20px}
+.empty{background:#fff;border:1px dashed #dcbab9;border-radius:22px;text-align:center;padding:45px 20px;margin:20px 0}
+.outfit{display:grid;grid-template-columns:minmax(0,1fr);gap:8px;margin:25px auto;max-width:390px}.outfitbox{background:white;border:1px solid var(--line);border-radius:20px;padding:12px;text-align:center}.outfitpic{height:245px;background:#fcf4f2;border-radius:15px;display:flex;align-items:center;justify-content:center;overflow:hidden;font-size:50px}.outfitpic img{width:100%;height:100%;object-fit:contain}.outfitbox .toolbar{justify-content:center}
+.panel{background:white;border:1px solid var(--line);border-radius:24px;padding:26px;margin:20px 0}
+.field{display:block;width:100%;padding:13px;border:1px solid var(--line);border-radius:13px;background:#fff;margin:12px 0}
+.back{border:0;background:none;color:var(--rose);padding:18px 0;font-weight:600}
+.bottom{position:sticky;bottom:10px;margin:25px auto 0;background:#ffffffeb;backdrop-filter:blur(10px);border:1px solid var(--line);border-radius:30px;padding:9px;display:flex;justify-content:space-around;max-width:440px;box-shadow:0 8px 30px #8c65601a}
+.bottom button{border:0;background:none;color:var(--muted);padding:9px 12px;border-radius:20px}.bottom button.active{background:#f0deda;color:var(--ink)}
+.saved-outfits{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px;margin-top:20px}.saved-card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:13px;box-shadow:0 8px 24px #9c76750c}.saved-pictures{display:flex;flex-direction:column;gap:4px;background:#fcf4f2;border-radius:16px;overflow:hidden}.saved-pictures img{width:100%;height:140px;object-fit:contain;background:#fff}.saved-meta{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:12px}.save-outfit{display:flex;justify-content:center;gap:10px;align-items:center;flex-wrap:wrap;margin:5px 0 16px}.note{font-size:13px;color:var(--muted)}.hidden{display:none}
+@media(max-width:520px){h1{font-size:46px}.hero{padding:48px 14px}.card{padding:18px;min-height:145px}.card strong{font-size:23px}.outfitpic{height:210px}}
+.outfit{gap:5px!important;margin-top:18px!important}.outfitbox{padding:9px!important}.outfitbox .outfit-controls{margin:3px 0 8px;align-items:center;gap:12px}.outfitbox .outfit-controls span{font-size:13px;color:var(--muted)}.outfitbox .outfitpic{height:215px}.outfitbox:nth-child(2) .outfit-controls{margin:8px 0 3px}
+
+.settings-hero{background:linear-gradient(125deg,#e8c9c7 0%,#f8e9e3 60%,#fff9f6 100%);border:1px solid #e8ceca;border-radius:27px;padding:27px 25px;margin:16px 0 23px;box-shadow:0 10px 30px #a66e7611;display:flex;align-items:center;gap:16px}
+.settings-hero-icon{background:#ffffffb5;border:1px solid #fff;width:60px;height:60px;border-radius:20px;display:grid;place-items:center;font-size:29px;flex-shrink:0;color:#96666f}
+.settings-hero h2{font-size:33px;margin:0 0 6px}.settings-hero p{margin:0;font-size:13px}
+.settings-group{margin:25px 0}.settings-group h3{font-size:12px;text-transform:uppercase;letter-spacing:2px;color:#9b7778;margin:0 0 12px 8px;font-weight:700}
+.settings-list{background:#fff;border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:0 7px 24px #9c76750b}
+.settings-row{padding:17px 19px;display:flex;align-items:center;gap:13px;border-bottom:1px solid #f4e8e6;min-width:0}
+.settings-row:last-child{border-bottom:0}.settings-symbol{background:#f8ece9;border-radius:13px;width:43px;height:43px;display:grid;place-items:center;flex-shrink:0;font-size:21px;color:#9d7074}
+.settings-row-body{flex:1;min-width:0}.settings-row-title{font-weight:700;color:var(--ink);font-size:15px}.settings-row-sub{font-size:12px;color:var(--muted);line-height:1.5;margin-top:4px}
+.settings-select{border:1px solid #e9d6d2;background:#fff9f8;color:#171717!important;-webkit-text-fill-color:#171717;border-radius:13px;padding:11px 9px;max-width:150px;min-width:0}
+.settings-action{border:1px solid #e9d6d2;background:#fff7f5;color:#79595e;border-radius:13px;padding:10px 13px;font-weight:600;white-space:nowrap}
+.settings-action:hover,.settings-select:focus{border-color:#b98082}.settings-footer{text-align:center;color:#a78a8d;font:italic 18px Georgia,serif;margin:28px 0}
+@media(max-width:440px){.settings-row{padding:14px 12px;gap:9px}.settings-symbol{width:37px;height:37px}.settings-select{max-width:115px;font-size:12px}.settings-row-title{font-size:13px}.settings-row-sub{font-size:11px}.settings-action{font-size:12px;padding:10px}.settings-hero{padding:21px 16px}}
+
+.auth-panel{background:#fff;border:1px solid #ecd9d7;border-radius:24px;padding:22px;margin:16px 0;box-shadow:0 9px 24px #986e7210}
+.auth-panel h3{margin:0 0 9px}.auth-field{display:block;width:100%;box-sizing:border-box;margin:9px 0 16px;padding:13px 14px;border:1px solid #dfc7c5;border-radius:12px;background:#fffafa;color:#171717!important;-webkit-text-fill-color:#171717;font-size:15px}
+.auth-tabs{display:flex;gap:9px;margin:15px 0}.auth-tabs button{flex:1;padding:12px;border:1px solid #e9d3d2;border-radius:13px;background:#fff;color:#70555b}.auth-tabs button.selected{background:#efd7d7;font-weight:700}
+.auth-msg{padding:13px;border-radius:12px;background:#fff0ef;color:#754950;margin:12px 0;overflow-wrap:anywhere}
+.auth-small{font-size:12px;color:#8e7678;line-height:1.65}.auth-link{background:none;border:0;text-decoration:underline;color:#9a6675;padding:12px 4px}
+
+/* Styler X selectable appearance */
+:root{--surface:#ffffff;--surface-alt:#f5e6e3;--surface-soft:#fcf4f2;--page-bg:linear-gradient(145deg,#fff9f7,#f9efed);--hero-bg:linear-gradient(120deg,#ecd0ce,#fff0ea);--settings-bg:linear-gradient(125deg,#e8c9c7,#f8e9e3 60%,#fff9f6);--control-bg:#fff7f5;--control-ink:#79595e;--accent-on:#ffffff;--row-border:#f4e8e6}
+html[data-theme="black"]{color-scheme:dark;--pink:#434343;--rose:#858585;--cream:#101010;--ink:#f5f5f5;--muted:#b8b8b8;--line:#383838;--surface:#1b1b1b;--surface-alt:#282828;--surface-soft:#242424;--page-bg:linear-gradient(145deg,#101010,#1b1b1b);--hero-bg:linear-gradient(120deg,#282828,#151515);--settings-bg:linear-gradient(125deg,#303030,#1b1b1b);--control-bg:#292929;--control-ink:#f1f1f1;--accent-on:#111;--row-border:#333}
+html[data-theme="white"]{color-scheme:light;--pink:#e8e8e8;--rose:#4a4a4a;--cream:#fff;--ink:#202020;--muted:#696969;--line:#dedede;--surface:#fff;--surface-alt:#f3f3f3;--surface-soft:#f6f6f6;--page-bg:linear-gradient(145deg,#fff,#f6f6f6);--hero-bg:linear-gradient(120deg,#f2f2f2,#fff);--settings-bg:linear-gradient(125deg,#efefef,#fff);--control-bg:#f6f6f6;--control-ink:#252525;--accent-on:#fff;--row-border:#ededed}
+html[data-theme="gray"]{color-scheme:light;--pink:#b8b8b8;--rose:#5f5f5f;--cream:#e4e4e4;--ink:#292929;--muted:#626262;--line:#c6c6c6;--surface:#f2f2f2;--surface-alt:#d6d6d6;--surface-soft:#dedede;--page-bg:linear-gradient(145deg,#e7e7e7,#cecece);--hero-bg:linear-gradient(120deg,#c7c7c7,#ebebeb);--settings-bg:linear-gradient(125deg,#bdbdbd,#e8e8e8);--control-bg:#e4e4e4;--control-ink:#292929;--accent-on:#fff;--row-border:#d5d5d5}
+body{background:var(--page-bg)}
+.iconbtn,.card,.pill,.item,.outfitbox,.panel,.saved-card,.settings-list,.auth-panel{background:var(--surface)}
+.card:nth-child(2),.pill.active{background:var(--surface-alt)}
+.hero{background:var(--hero-bg)}
+.settings-hero{background:var(--settings-bg);border-color:var(--line)}
+.settings-hero-icon{background:var(--surface-alt);border-color:var(--line);color:var(--ink)}
+.settings-group h3,.kicker{color:var(--muted)}
+.settings-row{border-color:var(--row-border)}
+.settings-symbol{background:var(--surface-alt);color:var(--ink)}
+.settings-action,.settings-select{background:var(--control-bg);border-color:var(--line);color:var(--control-ink)!important;-webkit-text-fill-color:var(--control-ink)}
+.settings-footer{color:var(--muted)}
+.bottom{background:var(--surface);border-color:var(--line)}
+.bottom button.active,.btn.light{background:var(--surface-alt);color:var(--ink)}
+.btn{background:var(--rose);color:var(--accent-on)}
+.btn.white{background:var(--surface);color:var(--ink)}
+.empty{background:var(--surface);border-color:var(--line)}
+.outfitpic,.saved-pictures{background:var(--surface-soft)}
+.itemfoot button,.auth-link{color:var(--rose)}
+.auth-panel{border-color:var(--line)}
+.auth-tabs button{background:var(--surface);color:var(--ink);border-color:var(--line)}
+.auth-tabs button.selected,.auth-msg{background:var(--surface-alt);color:var(--ink)}
+.auth-small{color:var(--muted)}
+.settings-theme-row{display:flex;gap:10px;flex-wrap:wrap;padding:17px 16px}
+.theme-choice{flex:1;min-width:85px;background:var(--surface);border:2px solid var(--line);border-radius:16px;padding:9px 7px 11px;color:var(--ink);font-weight:600;font-size:12px;display:flex;flex-direction:column;align-items:center;gap:8px}
+.theme-choice[aria-pressed="true"]{border-color:var(--rose);box-shadow:0 0 0 2px var(--pink)}
+.theme-preview{width:100%;height:47px;border-radius:10px;display:flex;align-items:center;justify-content:center;gap:5px;border:1px solid #9995}
+.theme-preview i{display:block;width:20px;height:26px;border-radius:5px;border:1px solid #9994}
+.theme-preview.pink{background:#f7e7e5}.theme-preview.pink i:first-child{background:#dfbeba}.theme-preview.pink i:last-child{background:#fffaf7}
+.theme-preview.black{background:#101010}.theme-preview.black i:first-child{background:#363636}.theme-preview.black i:last-child{background:#dedede}
+.theme-preview.white{background:#fff}.theme-preview.white i:first-child{background:#e5e5e5}.theme-preview.white i:last-child{background:#fafafa}
+.theme-preview.gray{background:#d2d2d2}.theme-preview.gray i:first-child{background:#777}.theme-preview.gray i:last-child{background:#eee}
+html[data-theme="black"] .field,html[data-theme="black"] .auth-field,html[data-theme="black"] input:not([type="file"]),html[data-theme="black"] select,html[data-theme="black"] textarea{background:#282828!important;color:#fff!important;-webkit-text-fill-color:#fff!important;border-color:#555;caret-color:#fff}
+html[data-theme="black"] input::placeholder,html[data-theme="black"] textarea::placeholder{color:#bbb!important;-webkit-text-fill-color:#bbb!important}
+html[data-theme="black"] .settings-select{background:#282828!important;color:#fff!important;-webkit-text-fill-color:#fff!important}
+html[data-theme="black"] h1{color:var(--ink)}
+html[data-theme="black"] .item img,html[data-theme="black"] .outfitpic img,html[data-theme="black"] .saved-pictures img{background:#fff}
+
+/* Minimal line icons follow the selected app theme */
+.bottom{gap:2px;align-items:stretch}
+.bottom button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;flex:1;min-width:0;padding:10px 3px!important;color:var(--muted);transition:background .2s,color .2s}
+.bottom button.active{color:var(--ink)}
+.bottom .nav-icon{flex-shrink:0;color:inherit;transition:color .2s}
+.bottom .nav-label{font-size:10px;line-height:1.15;text-align:center;white-space:normal}
+@media(min-width:400px){.bottom .nav-label{font-size:11px}}
+
+/* Homepage line icons match the Styler X wordmark across all themes */
+:root{--home-icon:#654b4e}
+html[data-theme="black"],html[data-theme="white"],html[data-theme="gray"]{--home-icon:var(--ink)}
+.home-card-icon{color:var(--home-icon);flex-shrink:0;display:block;transition:color .2s ease}
+html[data-theme="black"] .hero h1,html[data-theme="white"] .hero h1,html[data-theme="gray"] .hero h1{color:var(--home-icon)}
+
+.styler-toggle{position:relative;display:inline-flex;flex-shrink:0;width:52px;height:30px;cursor:pointer;align-items:center}
+.styler-toggle input{position:absolute;opacity:0;width:100%;height:100%;margin:0;cursor:pointer}
+.styler-toggle-track{display:block;width:52px;height:30px;border-radius:30px;background:#c3b6b6;transition:background .2s;position:relative}
+.styler-toggle-track:before{content:'';position:absolute;top:4px;left:4px;width:22px;height:22px;background:white;border-radius:50%;box-shadow:0 2px 5px #0002;transition:transform .2s}
+.styler-toggle input:checked+.styler-toggle-track{background:var(--rose)}
+.styler-toggle input:checked+.styler-toggle-track:before{transform:translateX(22px)}
+.styler-toggle input:focus-visible+.styler-toggle-track{outline:3px solid var(--ink);outline-offset:3px}
+.about-version{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:16px 0;margin:20px 0;color:var(--ink)}
+</style>
+</head>
+<body>
+<div class="shell">
+<header><button class="logo" onclick="show('home')">Styler X ♡</button><button class="iconbtn" onclick="show('settings')" aria-label="Settings">⚙</button></header>
+<main id="content"></main>
+<nav class="bottom" aria-label="Navigering">
+<button data-tab="home" onclick="show('home')"><svg class="nav-icon" viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></svg><span class="nav-label">Hem</span></button>
+<button data-tab="rare" onclick="show('rare')"><svg class="nav-icon" viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span class="nav-label">Sällan använda</span></button>
+<button data-tab="settings" onclick="show('settings')" id="bottom-settings"><svg class="nav-icon" viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M4 17h16"/><circle cx="9" cy="7" r="2" fill="var(--surface)"/><circle cx="16" cy="17" r="2" fill="var(--surface)"/></svg><span class="nav-label">Inställningar</span></button>
+<button data-tab="me" onclick="show('me')"><svg class="nav-icon" viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4.5 21c0-4 3.1-7 7.5-7s7.5 3 7.5 7"/></svg><span class="nav-label">Jag</span></button>
+</nav>
+<input id="photos" type="file" accept="image/*" multiple class="hidden">
+</div>
+<script>
+const content=document.getElementById('content');
+const categories=['all','tops','pants','skirts','shoes','bags','other'];
+const labels={
+sv:{home:'Hem',clothes:'Kläder',me:'Jag',welcome:'En liten plats för alla dina favoritplagg.',wardrobe:'Wardrobe',wardrobeDesc:'Din garderob',dressDesc:'Skapa en outfit',camera:'Camera',cameraDesc:'Lägg till kläder',meDesc:'Din stilprofil',back:'← Till startsidan',wardrobeTitle:'My Wardrobe',wardrobeSub:'Här samlar du alla dina kläder.',add:'+ Lägg till plagg',empty:'Inga plagg här ännu. Lägg till ditt första!',cameraTitle:'Add to Wardrobe',cameraSub:'Välj en bild och kategori för dina kläder.',cameraInfo:'📸 Lägg till bilder från mobilen eller datorn.',category:'Kategori',choose:'Välj bilder',local:'Bilderna sparas bara i den här webbläsaren.',dressTitle:'Dress Me ✨',dressSub:'Bläddra mellan dina kläder och hitta en fin kombination.',top:'Överdel',bottom:'Underdel',dressInfo:'Lägg till överdelar, byxor och kjolar för att skapa outfits.',meTitle:'Me ♡',meSub:'Din alldeles egna stilprofil.',styleLover:'Style lover',itemCount:'plagg i din garderob',yourName:'Ditt namn',saveName:'Spara namn',settings:'Settings',settingsSub:'Gör Styler X precis som du vill.',settingsLanguageHint:'Välj vilket språk du vill använda i appen.',settingsPersonal:'Personligt',settingsPreferences:'Dina val',settingsData:'Din data',settingsDataHint:'Spara en kopia av garderoben och dina favoritoutfits.',settingsAbout:'Om Styler X',settingsAboutHint:'Din personliga digitala garderob, skapad för att göra vardagens outfits enklare.',settingsPrivacy:'Dina bilder och kläder lagras lokalt i den här webbläsaren. Det finns inget konto eller molnsynk i denna version.',settingsReminder:'Påminnelser om sällan använda plagg',settingsReminderHint:'Ändra när du vill bli påmind om plagg du inte har använt.',settingsSaved:'Språket har ändrats!',notifTitle:'Notiser',notifHint:'Visa påminnelser inne i Styler X',notifOn:'På',notifOff:'Av',notifExplain:'Just nu gäller valet påminnelser i appen, till exempel om sällan använda plagg. Mobilnotiser utanför appen är inte aktiverade.',aboutVersion:'Version',aboutPurpose:'Din digitala garderob',aboutDescription:'Styler X hjälper dig samla dina kläder, skapa outfits och hitta nya sätt att använda din garderob.',aboutMade:'Skapad med ♡',aboutStorage:'Dina plagg lagras just nu på den här enheten. Kontoinloggning innebär ännu inte att garderoben synkas mellan enheter.',themeTitle:'Utseende',themeHint:'Välj din favoritdesign. Hela appen ändrar färg direkt.',themePink:'Rosa',themeBlack:'Svart',themeWhite:'Vit',themeGray:'Grå',authTitle:'Logga in / Skapa konto',authHint:'Hantera ditt Styler X-konto',authWelcome:'Ditt Styler X-konto',authIntro:'Skapa konto, logga in och återställ lösenord.',authEmail:'E-postadress',authPassword:'Lösenord (minst 6 tecken)',authLogin:'Logga in',authRegister:'Skapa konto',authReset:'Glömt lösenord?',authLogout:'Logga ut',authSendReset:'Skicka återställningsmejl',authBack:'Till inloggning',authConfigured:'Inloggad som',authConfirm:'Klart! Kontrollera din mejl om bekräftelse krävs.',authResetSent:'Om adressen finns skickas ett återställningsmejl.',authError:'Kunde inte ansluta. Kontrollera uppgifterna och försök igen.',authSetup:'Anslut inloggning',authSetupInfo:'För riktiga konton behövs ett separat Styler X-projekt i Supabase. Ange projektets URL och publika nyckel här. Använd aldrig en hemlig nyckel.',authUrl:'Projekt-URL',authKey:'Publik nyckel',authConnect:'Anslut',authNotReady:'Inloggningen behöver kopplas till en egen säker kontotjänst innan konton kan skapas.',authLocal:'Din garderob lagras fortfarande på den här enheten. Inloggning synkroniserar inte automatiskt dina plagg.',authWait:'Arbetar…',authReady:'Anslutningen är klar!',authChange:'Byt anslutning',authPasswordNew:'Nytt lösenord',authSavePassword:'Spara nytt lösenord',authPasswordSaved:'Lösenordet är uppdaterat.',colors:'Färger: puderrosa, beige och krämvit.',storage:'Detta är en lokal förhandsversion. Dina klädbilder sparas på enheten, inte i ett onlinekonto.',backup:'Spara säkerhetskopia',delete:'Vill du ta bort plagget?',remove:'Ta bort',error:'Kunde inte spara bilden. Försök med en mindre bild.',language:'Språk',scan:'✨ Skanna & ta bort bakgrund',scanHint:'AI försöker frilägga plagget och lägger det på vit bakgrund. Första gången kan ta en stund.',scanning:'✨ Skannar plagget… första gången laddas AI-modellen ner.',scanFail:'AI-utklippningen fungerade inte just nu. Kontrollera internetanslutningen och försök igen.',uploading:'Sparar bilden…',scanDone:'Klart! Plagget har fått vit bakgrund.',scanReady:'Bilden är vald. Tryck på Starta skanning.',scanStart:'Starta skanning',scanWait:'Bearbetar bilden…',scanError:'Skanningen kunde inte slutföras i den här förhandsvisningen.',scanSave:'Spara i garderoben',scanCancel:'Avbryt',outfitsTitle:'My Outfits ♡',outfitsDesc:'Dina sparade favoritkombinationer.',outfitsCard:'Dina favoritoutfits',saveOutfit:'♡ Spara denna outfit',savedOutfit:'♥ Sparad outfit',outfitNeed:'Lägg till både en överdel och en underdel först.',outfitSaved:'Outfiten har sparats! ♡',outfitAlready:'Den här outfiten är redan sparad.',outfitEmpty:'Här hamnar dina favoritoutfits. Skapa en i Dress Me och tryck på hjärtat!',outfitDelete:'Ta bort den här outfiten?',outfitRemove:'Ta bort',outfitMissing:'Ett plagg har tagits bort från garderoben',outfitGo:'Skapa en outfit',outfitCount:'sparade outfits',wishCard:'Kläder du drömmer om',wishTitle:'Wishlist ♡',wishDesc:'Spara kläder du vill köpa någon gång.',wishAdd:'+ Lägg till önskning',wishName:'Plaggets namn',wishPrice:'Pris (valfritt)',wishShop:'Butik eller länk (valfritt)',wishPhoto:'Bild (valfritt)',wishSave:'Spara på önskelistan',wishEmpty:'Här kan du samla alla plagg du önskar dig. ♡',wishRemove:'Ta bort',wishDelete:'Ta bort från önskelistan?',wishOpen:'Visa i butik',wishRequired:'Skriv vad plagget heter först.',wishError:'Kunde inte spara önskningen. Försök igen.',wishLink:'Länk måste börja med https:// eller http://',wishSaved:'Sparat! ♡',rareTitle:'Sällan använda ♡',rareDesc:'Få koll på plagg du inte har använt på ett tag.',rareCard:'Ge dina glömda plagg en chans',rarePeriod:'Påminn mig efter',rareMonths:'månader',rareDays:'dagar',rareSet:'Spara tidsgräns',rareNone:'Inga plagg behöver ses över just nu. ♡',rareReview:'Dags att se över!',rareKeep:'Behåll',rareSell:'Kanske sälja',rareDecide:'Vad vill du göra med plagget?',rareKept:'Behålls i garderoben',rareSellNote:'Markerad som kanske sälja – ingen försäljning sker i appen.',rareWear:'Jag använde den här outfiten idag ♡',rareWorn:'Outfiten markerad som använd idag!',rareUntracked:'Ingen användning registrerad ännu',rareLast:'Senast använd',rareReviewCount:'plagg att se över',rareInfo:'Vi räknar bara användning när du trycker på knappen i Dress Me, inte när du bläddrar. Nya och äldre plagg får en startdag för bevakningen. Ingen försäljning sker automatiskt.',rareSellList:'Kanske sälja',rareRestore:'Ångra märkning',rareNoSell:'Inga plagg markerade för eventuell försäljning.',rareCount:'Gånger använd',rareToday:'idag',rareUpcoming:'Snart dags',rareAll:'Alla plagg',rareDue:'Att se över',rareTracked:'Plagg i garderoben',rareDaysLeft:'Dagar kvar',rareSingleWorn:'Använd idag',rareNext:'Nästa påminnelse',rareMarked:'Markerade för eventuell försäljning',rareNoUpcoming:'Inga kommande påminnelser just nu.',rareTip:'Tips: Markera plagg som använda här eller via Dress Me. Påminnelsen visas i appen när du öppnar den.',rareNoWear:'Aldrig registrerat',rareNotYet:'Inga plagg i garderoben ännu.',rareSummary:'Översikt',rareReminder:'Du har plagg att se över ♡',color:'Färg',allColors:'Alla färger',unknownColor:'Ej vald',colorHelp:'Välj färg när du lägger till ett plagg. Du kan också ändra färg på dina gamla plagg.',colorSaved:'Färgen har sparats.'},
+en:{home:'Home',clothes:'Clothes',me:'Me',welcome:'A little space for all your favorite pieces.',wardrobe:'Wardrobe',wardrobeDesc:'Your personal closet',dressDesc:'Create an outfit',camera:'Camera',cameraDesc:'Add your clothes',meDesc:'Your style profile',back:'← Back to home',wardrobeTitle:'My Wardrobe',wardrobeSub:'All your favorite pieces in one place.',add:'+ Add clothing',empty:'Nothing here yet. Add your first item!',cameraTitle:'Add to Wardrobe',cameraSub:'Choose a photo and a category for your clothes.',cameraInfo:'📸 Add photos from your phone or computer.',category:'Category',choose:'Choose photos',local:'Photos are saved only in this browser.',dressTitle:'Dress Me ✨',dressSub:'Mix and match your clothes to find the perfect look.',top:'Top',bottom:'Bottom',dressInfo:'Add tops, pants and skirts to start creating outfits.',meTitle:'Me ♡',meSub:'Your very own style profile.',styleLover:'Style lover',itemCount:'items in your wardrobe',yourName:'Your name',saveName:'Save name',settings:'Settings',settingsSub:'Make Styler X feel like yours.',settingsLanguageHint:'Choose the language you want to use in the app.',settingsPersonal:'Personal',settingsPreferences:'Your preferences',settingsData:'Your data',settingsDataHint:'Save a copy of your wardrobe and favorite outfits.',settingsAbout:'About Styler X',settingsAboutHint:'Your personal digital wardrobe, made to simplify everyday outfits.',settingsPrivacy:'Your photos and clothes are stored locally in this browser. There is no account or cloud sync in this version.',settingsReminder:'Rarely worn reminders',settingsReminderHint:'Change when you want to review clothes you have not worn.',settingsSaved:'Language updated!',notifTitle:'Notifications',notifHint:'Show reminders inside Styler X',notifOn:'On',notifOff:'Off',notifExplain:'For now, this controls in-app reminders, such as rarely worn clothes. Push notifications outside the app are not enabled.',aboutVersion:'Version',aboutPurpose:'Your digital wardrobe',aboutDescription:'Styler X helps you organize your clothes, create outfits and find new ways to wear what you own.',aboutMade:'Made with ♡',aboutStorage:'Your clothes are currently stored on this device. Signing in does not yet sync your wardrobe across devices.',themeTitle:'Appearance',themeHint:'Choose your favorite look. The whole app updates instantly.',themePink:'Pink',themeBlack:'Black',themeWhite:'White',themeGray:'Gray',authTitle:'Sign in / Create account',authHint:'Manage your Styler X account',authWelcome:'Your Styler X account',authIntro:'Create an account, sign in, or reset your password.',authEmail:'Email address',authPassword:'Password (at least 6 characters)',authLogin:'Sign in',authRegister:'Create account',authReset:'Forgot password?',authLogout:'Sign out',authSendReset:'Send reset email',authBack:'Back to sign in',authConfigured:'Signed in as',authConfirm:'Done! Check your email if confirmation is required.',authResetSent:'If the address exists, a reset email will be sent.',authError:'Connection failed. Check the details and try again.',authSetup:'Connect authentication',authSetupInfo:'Real accounts need a separate Styler X Supabase project. Enter its URL and publishable key here. Never enter a secret key.',authUrl:'Project URL',authKey:'Publishable key',authConnect:'Connect',authNotReady:'Authentication needs to be connected to a secure account service before accounts can be created.',authLocal:'Your wardrobe still stays on this device. Signing in does not automatically sync your clothes.',authWait:'Working…',authReady:'Connection ready!',authChange:'Change connection',authPasswordNew:'New password',authSavePassword:'Save new password',authPasswordSaved:'Password updated.',colors:'Colors: powder pink, beige and cream.',storage:'This is a local preview. Your clothing photos are stored on this device, not in an online account.',backup:'Download backup',delete:'Remove this item?',remove:'Remove',error:'Could not save the photo. Try a smaller image.',language:'Language',scan:'✨ Scan & remove background',scanHint:'AI will try to cut out the item and put it on a white background. The first scan may take a while.',scanning:'✨ Scanning… downloading the AI model for the first use.',scanFail:'Background removal did not work this time. Check your internet connection and try again.',uploading:'Saving photo…',scanDone:'Done! Your item now has a white background.',scanReady:'Photo selected. Press Start scan.',scanStart:'Start scan',scanWait:'Processing photo…',scanError:'The scan could not finish in this preview.',scanSave:'Save to wardrobe',scanCancel:'Cancel',outfitsTitle:'My Outfits ♡',outfitsDesc:'Your saved favorite combinations.',outfitsCard:'Your favorite looks',saveOutfit:'♡ Save this outfit',savedOutfit:'♥ Outfit saved',outfitNeed:'Add both a top and a bottom first.',outfitSaved:'Outfit saved! ♡',outfitAlready:'This outfit is already saved.',outfitEmpty:'Your favorite outfits will appear here. Make one in Dress Me and tap the heart!',outfitDelete:'Delete this outfit?',outfitRemove:'Delete',outfitMissing:'An item was removed from your wardrobe',outfitGo:'Create an outfit',outfitCount:'saved outfits',wishCard:'Pieces you dream of',wishTitle:'Wishlist ♡',wishDesc:'Save clothes you would love to buy.',wishAdd:'+ Add a wish',wishName:'Item name',wishPrice:'Price (optional)',wishShop:'Store or link (optional)',wishPhoto:'Photo (optional)',wishSave:'Save to wishlist',wishEmpty:'Your dream pieces will appear here. ♡',wishRemove:'Remove',wishDelete:'Remove from your wishlist?',wishOpen:'View in store',wishRequired:'Please enter an item name.',wishError:'Could not save the item. Please try again.',wishLink:'Links must start with https:// or http://',wishSaved:'Saved! ♡',rareTitle:'Rarely Worn ♡',rareDesc:'Keep track of clothes you have not worn in a while.',rareCard:'Rediscover forgotten pieces',rarePeriod:'Remind me after',rareMonths:'months',rareDays:'days',rareSet:'Save reminder period',rareNone:'No clothes need reviewing right now. ♡',rareReview:'Time for a review!',rareKeep:'Keep',rareSell:'Maybe sell',rareDecide:'What would you like to do with this item?',rareKept:'Keeping it in your wardrobe',rareSellNote:'Marked as maybe sell – nothing is sold through this app.',rareWear:'I wore this outfit today ♡',rareWorn:'Outfit marked as worn today!',rareUntracked:'No wears recorded yet',rareLast:'Last worn',rareReviewCount:'items to review',rareInfo:'Wears only count when you press the button in Dress Me, not when browsing. New and existing items get a tracking start date. Nothing is sold automatically.',rareSellList:'Maybe sell',rareRestore:'Undo decision',rareNoSell:'No items marked for possible sale.',rareCount:'Times worn',rareToday:'today',rareUpcoming:'Coming up',rareAll:'All items',rareDue:'Review',rareTracked:'Items in wardrobe',rareDaysLeft:'Days left',rareSingleWorn:'Worn today',rareNext:'Next reminder',rareMarked:'Marked as maybe sell',rareNoUpcoming:'No upcoming reminders right now.',rareTip:'Tip: Mark items as worn here or in Dress Me. Reminders appear in the app when you open it.',rareNoWear:'Never logged',rareNotYet:'No clothes in your wardrobe yet.',rareSummary:'Overview',rareReminder:'You have items to review ♡',color:'Color',allColors:'All colors',unknownColor:'Not selected',colorHelp:'Choose a color when adding an item. You can also update older items.',colorSaved:'Color saved.'}
+};
+const colorKeys=['black','white','grey','beige','brown','pink','red','orange','yellow','green','blue','purple','multi','unknown'];
+const colorNames={
+ sv:['Svart','Vit','Grå','Beige','Brun','Rosa','Röd','Orange','Gul','Grön','Blå','Lila','Flerfärgad','Ej vald'],
+ en:['Black','White','Grey','Beige','Brown','Pink','Red','Orange','Yellow','Green','Blue','Purple','Multicolor','Not selected']
+};
+const colorSwatches={black:'#333333',white:'#ffffff',grey:'#9b9b9b',beige:'#e8d6bd',brown:'#8c5942',pink:'#f2a9c1',red:'#d84b52',orange:'#ed984e',yellow:'#e9d16a',green:'#72a98c',blue:'#729ed4',purple:'#a98bc7',multi:'linear-gradient(135deg,#ed93ae 0 33%,#8bbbdc 33% 66%,#f2d17d 66%)',unknown:'#e8e2e0'};
+function colorName(key){const i=colorKeys.indexOf(key);return colorNames[lang][i<0?13:i]}
+function colorDot(key){const fill=colorSwatches[key]||colorSwatches.unknown;return `<span aria-hidden="true" style="display:inline-block;width:13px;height:13px;border-radius:50%;border:1px solid #c9baba;background:${fill};vertical-align:middle;margin-right:5px"></span>`}
+function colorOptions(selected,includeAll=false){return (includeAll?['all',...colorKeys]:colorKeys).map(k=>`<option value="${k}" ${selected===k?'selected':''}>${k==='all'?t('allColors'):colorName(k)}</option>`).join('')}
+let colorFilter='all';
+async function changeClothingColor(id,value){
+ const item=clothes.find(x=>String(x.id)===String(id));if(!item)return;
+ const previous=item.color;item.color=value;
+ try{await save(item)}
+ catch(err){item.color=previous;alert(t('error'));render()}
+}
+const categoryLabels={sv:['Alla','Överdelar','Byxor','Kjolar','Skor','Väskor','Annat'],en:['All','Tops','Pants','Skirts','Shoes','Bags','Other']};
+let lang='sv';try{lang=localStorage.getItem('stylerx_lang')==='en'?'en':'sv'}catch(e){}
+let page='home',filter='all',clothes=[],choices=[0,0],name='',outfits=[],outfitMessage='',wishlist=[],wishFormOpen=false,wishMessage='';
+try{const saved=JSON.parse(localStorage.getItem('stylerx_saved_outfits_v1')||'[]');outfits=Array.isArray(saved)?saved.filter(o=>o&&typeof o.topId==='string'&&typeof o.bottomId==='string'):[]}catch(e){}
+function persistOutfits(){try{localStorage.setItem('stylerx_saved_outfits_v1',JSON.stringify(outfits));return true}catch(e){alert(lang==='sv'?'Kunde inte spara i webbläsaren.':'Could not save in this browser.');return false}}
+function outfitParts(){const tops=clothes.filter(x=>x.category==='tops'),bottoms=clothes.filter(x=>['pants','skirts'].includes(x.category));return [tops.length?tops[((choices[0]%tops.length)+tops.length)%tops.length]:null,bottoms.length?bottoms[((choices[1]%bottoms.length)+bottoms.length)%bottoms.length]:null]}
+function isOutfitSaved(){const [top,bottom]=outfitParts();return !!(top&&bottom&&outfits.some(o=>o.topId===String(top.id)&&o.bottomId===String(bottom.id)))}
+function saveOutfit(){const [top,bottom]=outfitParts();if(!top||!bottom){outfitMessage=t('outfitNeed');render();return}if(isOutfitSaved()){outfitMessage=t('outfitAlready');render();return}outfits.unshift({id:String(Date.now())+Math.random(),topId:String(top.id),bottomId:String(bottom.id),createdAt:new Date().toISOString()});if(!persistOutfits()){outfits.shift();return}outfitMessage=t('outfitSaved');render()}
+function deleteOutfit(id){if(!confirm(t('outfitDelete')))return;outfits=outfits.filter(o=>o.id!==id);persistOutfits();render()}
+function openOutfit(id){const o=outfits.find(x=>x.id===id);if(!o)return;const tops=clothes.filter(x=>x.category==='tops'),bottoms=clothes.filter(x=>['pants','skirts'].includes(x.category));const ti=tops.findIndex(x=>String(x.id)===o.topId),bi=bottoms.findIndex(x=>String(x.id)===o.bottomId);if(ti<0||bi<0)return;choices=[ti,bi];outfitMessage='';show('dress')}
+
+try{name=localStorage.getItem('stylerx_name')||''}catch(e){}
+function t(key){return labels[lang][key]}
+function cat(key){const i=categories.indexOf(key);return categoryLabels[lang][i<0?6:i]}
+let appTheme='pink';
+try{const storedTheme=localStorage.getItem('stylerx_theme');if(['pink','black','white','gray'].includes(storedTheme))appTheme=storedTheme}catch(e){}
+function applyTheme(){document.documentElement.setAttribute('data-theme',appTheme)}
+function setTheme(value){if(!['pink','black','white','gray'].includes(value))return;appTheme=value;applyTheme();try{localStorage.setItem('stylerx_theme',value)}catch(e){}render()}
+applyTheme();
+function setLanguage(value){lang=value==='en'?'en':'sv';try{localStorage.setItem('stylerx_lang',lang)}catch(e){}render()}
+function safe(t){return String(t).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function db(){return new Promise((ok,no)=>{const r=indexedDB.open('stylerx_clothes',2);r.onupgradeneeded=()=>{const d=r.result;if(!d.objectStoreNames.contains('clothes'))d.createObjectStore('clothes',{keyPath:'id'});if(!d.objectStoreNames.contains('wishlist'))d.createObjectStore('wishlist',{keyPath:'id'})};r.onsuccess=()=>ok(r.result);r.onerror=()=>no(r.error)})}
+async function load(){
+ try{
+  const d=await db();
+  const raw=await new Promise((resolve,reject)=>{const tx=d.transaction('clothes','readonly');const req=tx.objectStore('clothes').getAll();req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error)});
+  const now=new Date().toISOString();
+  clothes=raw.map(x=>({...x,trackedAt:x.trackedAt||x.addedAt||now,category:({'Alla':'all','Överdelar':'tops','Byxor':'pants','Kjolar':'skirts','Skor':'shoes','Väskor':'bags','Annat':'other'}[x.category]||x.category)}));
+  const missing=clothes.filter(x=>!raw.some(y=>String(y.id)===String(x.id)&&y.trackedAt));
+  if(missing.length)await new Promise((resolve,reject)=>{const tx=d.transaction('clothes','readwrite');missing.forEach(x=>tx.objectStore('clothes').put(x));tx.oncomplete=resolve;tx.onerror=()=>reject(tx.error)});
+  render();
+ }catch(e){console.warn('Storage unavailable',e)}
+}
+async function save(item){const d=await db();const t=d.transaction('clothes','readwrite');t.objectStore('clothes').put(item);t.oncomplete=load}
+async function remove(id){if(!confirm(t('delete')))return;const d=await db();const tx=d.transaction('clothes','readwrite');tx.objectStore('clothes').delete(id);tx.oncomplete=load}
+async function loadWishlist(){try{const d=await db();const r=d.transaction('wishlist').objectStore('wishlist').getAll();r.onsuccess=()=>{wishlist=r.result.reverse();if(page==='wishlist')render()}}catch(e){console.warn('Wishlist storage unavailable',e)}}
+async function addWish(item){const d=await db();return new Promise((resolve,reject)=>{const tx=d.transaction('wishlist','readwrite');tx.objectStore('wishlist').put(item);tx.oncomplete=()=>resolve();tx.onerror=()=>reject(tx.error)})}
+async function removeWish(id){
+ const old=wishlist.slice();
+ wishlist=wishlist.filter(w=>String(w.id)!==String(id));
+ wishMessage='';
+ render();
+ try{
+  const d=await db();
+  await new Promise((resolve,reject)=>{
+   const tx=d.transaction('wishlist','readwrite');
+   tx.objectStore('wishlist').delete(id);
+   tx.oncomplete=resolve;
+   tx.onerror=()=>reject(tx.error);
+   tx.onabort=()=>reject(tx.error);
+  });
+  await loadWishlist();
+ }catch(e){
+  console.error('Wishlist delete failed',e);
+  wishlist=old;
+  wishMessage=t('wishError');
+  render();
+ }
+}
+function confirmWishDelete(button){
+ const id=button.dataset.wishDelete;
+ if(button.dataset.confirmDelete==='yes'){removeWish(id);return}
+ document.querySelectorAll('[data-rare-tab]').forEach(b=>b.onclick=()=>setRareTab(b.dataset.rareTab));
+document.querySelectorAll('[data-rare-worn]').forEach(b=>b.onclick=()=>markSingleWorn(b.dataset.rareWorn));
+document.querySelectorAll('[data-rare-keep]').forEach(b=>b.onclick=()=>rareDecision(b.dataset.rareKeep,'keep'));
+document.querySelectorAll('[data-rare-sell]').forEach(b=>b.onclick=()=>rareDecision(b.dataset.rareSell,'sell'));
+document.querySelectorAll('[data-rare-restore]').forEach(b=>b.onclick=()=>rareDecision(b.dataset.rareRestore,'restore'));
+document.querySelectorAll('[data-wish-delete]').forEach(b=>{
+  b.dataset.confirmDelete='no';b.textContent=t('wishRemove');
+ });
+ button.dataset.confirmDelete='yes';
+ button.textContent=lang==='sv'?'Tryck igen för att ta bort':'Tap again to remove';
+ button.style.background='#b98082';
+ button.style.color='white';
+}
+function toggleWishForm(){wishFormOpen=!wishFormOpen;wishMessage='';render()}
+async function saveWish(){
+ const title=document.getElementById('wish-title')?.value.trim()||'';
+ const price=document.getElementById('wish-price')?.value.trim()||'';
+ const shop=document.getElementById('wish-shop')?.value.trim()||'';
+ const file=document.getElementById('wish-photo')?.files[0];
+ if(!title){alert(t('wishRequired'));return}
+ if(shop&&/^(https?:)/i.test(shop)&&!/^https?:\/\//i.test(shop)){alert(t('wishLink'));return}
+ const button=document.getElementById('wish-submit');if(button)button.disabled=true;
+ try{
+  const image=file?await resize(file):'';
+  await addWish({id:String(Date.now())+Math.random(),title,price,shop,image});
+  wishFormOpen=false;wishMessage=t('wishSaved');await loadWishlist();render()
+ }catch(e){console.error(e);alert(t('wishError'));if(button)button.disabled=false}
+}
+function shopLink(shop){return /^https?:\/\//i.test(shop||'')?shop:''}
+let rareMonths=3,rareDaysMode=false,rareDays=90,rareNoticeDismissed=false;
+try{const pref=JSON.parse(localStorage.getItem('stylerx_rare_preferences')||'{}');rareMonths=Number(pref.months)||3;rareDays=Number(pref.days)||90;rareDaysMode=!!pref.daysMode}catch(e){}
+function thresholdDate(){const d=new Date();if(rareDaysMode)d.setDate(d.getDate()-rareDays);else{const day=d.getDate();d.setDate(1);d.setMonth(d.getMonth()-rareMonths);d.setDate(Math.min(day,new Date(d.getFullYear(),d.getMonth()+1,0).getDate()))}return d}
+function itemStart(x){const stamp=[x.lastWornAt,x.trackedAt,x.addedAt].filter(Boolean).sort().at(-1);const d=new Date(stamp||Date.now());return Number.isNaN(d.getTime())?new Date():d}
+function isRare(x){return x.reviewStatus!=='sell'&&itemStart(x)<=thresholdDate()}
+function rareItems(){return clothes.filter(isRare)}
+function niceDate(date){try{return new Date(date).toLocaleDateString(lang==='sv'?'sv-SE':'en-GB')}catch(e){return ''}}
+async function markWorn(){
+ const [top,bottom]=outfitParts();if(!top&&!bottom)return;
+ const now=new Date().toISOString();
+ try{
+  const d=await db();
+  await new Promise((resolve,reject)=>{const tx=d.transaction('clothes','readwrite');for(const x of [top,bottom])if(x){tx.objectStore('clothes').put({...x,lastWornAt:now,trackedAt:x.trackedAt||now,wearCount:(x.wearCount||0)+1,reviewStatus:''})}tx.oncomplete=resolve;tx.onerror=()=>reject(tx.error)});
+  outfitMessage=t('rareWorn');await load();
+ }catch(e){console.error(e);alert(t('error'))}
+}
+function saveRarePrefs(){
+ const mode=document.getElementById('rare-unit').value,amount=Number(document.getElementById('rare-amount').value);
+ if(!Number.isInteger(amount)||amount<1||amount>(mode==='months'?120:3650)){alert(lang==='sv'?'Välj ett giltigt antal (max 120 månader eller 3650 dagar).':'Choose a valid amount (up to 120 months or 3650 days).');return}
+ rareDaysMode=mode==='days';if(rareDaysMode)rareDays=amount;else rareMonths=Math.min(120,amount);
+ try{
+  localStorage.setItem('stylerx_rare_preferences',JSON.stringify({months:rareMonths,days:rareDays,daysMode:rareDaysMode}));
+  rareSaveMessage=lang==='sv'?`✓ Sparat! Du får en påminnelse i appen efter ${amount} ${mode==='days'?(amount===1?'dag':'dagar'):(amount===1?'månad':'månader')}.`:`✓ Saved! You will see an in-app reminder after ${amount} ${mode==='days'?(amount===1?'day':'days'):(amount===1?'month':'months')}.`;
+ }catch(e){rareSaveMessage=lang==='sv'?'Kunde inte spara tidsgränsen i webbläsaren.':'Could not save the reminder period in this browser.'}
+ render();
+}
+async function rareDecision(id,status){
+ const item=clothes.find(x=>String(x.id)===String(id));if(!item)return;
+ const now=new Date().toISOString();
+ const updated={...item,reviewStatus:status==='sell'?'sell':'',trackedAt:now};
+ try{const d=await db();await new Promise((resolve,reject)=>{const tx=d.transaction('clothes','readwrite');tx.objectStore('clothes').put(updated);tx.oncomplete=resolve;tx.onerror=()=>reject(tx.error)});await load()}
+ catch(e){console.error(e);alert(t('error'))}
+}
+let rareTab='review',rareSaveMessage='';
+function setRareTab(tab){rareTab=tab;render()}
+function daysUntilReview(x){return Math.max(0,Math.ceil((itemStart(x).getTime()-thresholdDate().getTime())/86400000))}
+async function markSingleWorn(id){
+ const item=clothes.find(x=>String(x.id)===String(id));if(!item)return;
+ const now=new Date().toISOString();
+ const updated={...item,lastWornAt:now,wearCount:(item.wearCount||0)+1,reviewStatus:''};
+ try{const d=await db();await new Promise((resolve,reject)=>{const tx=d.transaction('clothes','readwrite');tx.objectStore('clothes').put(updated);tx.oncomplete=resolve;tx.onerror=()=>reject(tx.error)});await load()}
+ catch(e){console.error(e);alert(t('error'))}
+}
+
+let authClient=null,authUser=null,authMode='login',authMessage='',authBusy=false,authSetupVisible=false;
+const stylerXDefaultAuth={url:'https://rnwmtaqvyquaaookgmpj.supabase.co',key:'sb_publishable_uWk7ZmI0_uLJ89RXJT5DIA_GXMnZqHz'};
+let authConfig=stylerXDefaultAuth;
+try{const stored=JSON.parse(localStorage.getItem('stylerx_auth_config')||'null');if(stored?.url===stylerXDefaultAuth.url&&stored?.key===stylerXDefaultAuth.key)authConfig=stored}catch(e){}
+async function initAuth(){
+ if(!authConfig||!window.supabase?.createClient)return;
+ try{
+  authClient=window.supabase.createClient(authConfig.url,authConfig.key,{auth:{autoRefreshToken:true,persistSession:true,detectSessionInUrl:true}});
+  const {data}=await authClient.auth.getUser();authUser=data?.user||null;
+  authClient.auth.onAuthStateChange((event,session)=>{authUser=session?.user||null;if(event==='PASSWORD_RECOVERY'){authMode='newpass';show('auth')}else if(page==='auth')render()});
+  if(page==='auth')render();
+ }catch(e){console.warn('Auth setup',e)}
+}
+function authSetMode(mode){authMode=mode;authMessage='';render()}
+function authStatus(message){authMessage=message;authBusy=false;render()}
+async function authConnect(){
+ const url=document.getElementById('auth-url')?.value.trim().replace(/\/$/,'');
+ const key=document.getElementById('auth-key')?.value.trim();
+ if(!/^https:\/\/[a-z0-9-]+\.supabase\.co$/i.test(url||'')||!key||!(/^(sb_publishable_|eyJ)/.test(key))){authStatus(t('authError'));return}
+ authConfig={url,key};localStorage.setItem('stylerx_auth_config',JSON.stringify(authConfig));authSetupVisible=false;await initAuth();authStatus(t('authReady'));
+}
+async function authSubmit(){
+ if(!authClient){authStatus(t('authNotReady'));return}
+ const email=document.getElementById('auth-email')?.value.trim()||'';
+ const password=document.getElementById('auth-password')?.value||'';
+ if(!/^\S+@\S+\.\S+$/.test(email)||((authMode==='login'||authMode==='register')&&password.length<6)){authStatus(t('authError'));return}
+ authBusy=true;
+ try{
+  let result;
+  if(authMode==='register')result=await authClient.auth.signUp({email,password});
+  else if(authMode==='reset')result=await authClient.auth.resetPasswordForEmail(email,{redirectTo:location.origin+location.pathname});
+  else result=await authClient.auth.signInWithPassword({email,password});
+  if(result.error)throw result.error;
+  authUser=result.data?.user||authUser;
+  authStatus(authMode==='reset'?t('authResetSent'):authMode==='register'?t('authConfirm'):t('authReady'));
+ }catch(e){authStatus(e?.message||t('authError'))}
+}
+async function authSaveNewPassword(){
+ const password=document.getElementById('auth-newpassword')?.value||'';
+ if(password.length<6)return authStatus(t('authError'));
+ try{const {error}=await authClient.auth.updateUser({password});if(error)throw error;authMode='login';authStatus(t('authPasswordSaved'))}catch(e){authStatus(e.message||t('authError'))}
+}
+async function authLogout(){if(!authClient)return;const {error}=await authClient.auth.signOut();if(error)return authStatus(error.message);authUser=null;authStatus('');}
+function authView(){
+ const back=`<button class="back" onclick="show('settings')">${t('back')}</button>`;
+ let h=back+`<div class="settings-hero"><div class="settings-hero-icon">♡</div><div><h2>${t('authWelcome')}</h2><p>${t('authIntro')}</p></div></div>`;
+ if(authUser)h+=`<div class="auth-panel"><h3>${t('authConfigured')}</h3><p style="overflow-wrap:anywhere">${safe(authUser.email||'')}</p><button class="btn" onclick="authLogout()">${t('authLogout')}</button></div>`;
+ else if(authClient)h+=`<div class="auth-panel">${authMode==='newpass'?`<h3>${t('authPasswordNew')}</h3><input id="auth-newpassword" class="auth-field" type="password" autocomplete="new-password" minlength="6"><button class="btn" onclick="authSaveNewPassword()">${t('authSavePassword')}</button>`:`<div class="auth-tabs"><button class="${authMode==='login'?'selected':''}" onclick="authSetMode('login')">${t('authLogin')}</button><button class="${authMode==='register'?'selected':''}" onclick="authSetMode('register')">${t('authRegister')}</button></div><label>${t('authEmail')}<input id="auth-email" class="auth-field" type="email" autocomplete="email" required></label>${authMode!=='reset'?`<label>${t('authPassword')}<input id="auth-password" class="auth-field" type="password" autocomplete="${authMode==='register'?'new-password':'current-password'}" minlength="6" required></label>`:''}<button class="btn" onclick="authSubmit()">${authMode==='reset'?t('authSendReset'):authMode==='register'?t('authRegister'):t('authLogin')}</button><div><button class="auth-link" onclick="authSetMode('${authMode==='reset'?'login':'reset'}')">${authMode==='reset'?t('authBack'):t('authReset')}</button></div>`}</div>`;
+ if(!authClient&&false)h+=`<div class="auth-panel"><h3>${t('authSetup')}</h3><p class="auth-small">${t('authSetupInfo')}</p><label>${t('authUrl')}<input id="auth-url" class="auth-field" type="url" placeholder="https://example.supabase.co" value="${safe(authConfig?.url||'')}"></label><label>${t('authKey')}<input id="auth-key" class="auth-field" type="text" autocomplete="off" placeholder="sb_publishable_..." value="${safe(authConfig?.key||'')}"></label><button class="btn" onclick="authConnect()">${t('authConnect')}</button></div>`;
+ if(authClient&&false)h+=`<button class="auth-link" onclick="authSetupVisible=true;render()">${t('authChange')}</button>`;
+ if(!authClient)h+=`<div class="auth-msg" role="status">${t('authError')}</div>`;
+ if(authMessage)h+=`<div class="auth-msg" role="status">${safe(authMessage)}</div>`;
+ h+=`<p class="auth-small">${t('authLocal')}</p>`;
+ return h;
+}
+
+function show(p){page=p;render();window.scrollTo(0,0)}
+function heading(title,subtitle){return `<button class="back" onclick="show('home')">${t('back')}</button><h2>${title}</h2><p>${subtitle}</p>`}
+let notificationsEnabled=true;
+try{notificationsEnabled=localStorage.getItem('stylerx_notifications')!=='off'}catch(e){}
+function setNotifications(enabled){notificationsEnabled=!!enabled;try{localStorage.setItem('stylerx_notifications',enabled?'on':'off')}catch(e){}render()}
+function render(){
+document.documentElement.lang=lang;
+
+document.querySelector('[data-tab="home"] .nav-label').textContent=t('home');
+document.querySelector('[data-tab="rare"] .nav-label').textContent=(lang==='sv'?'Sällan använda':'Rarely worn');
+document.querySelector('[data-tab="me"] .nav-label').textContent=t('me');
+let h='';
+if(page==='home')h=`<section class="hero"><div class="kicker">YOUR PERSONAL STYLE SPACE</div><h1>Styler X ♡</h1><p>${t('welcome')}</p></section><div class="cards"><button class="card" onclick="show('wardrobe')"><svg class="home-card-icon" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6l1.4 4 4.1 3-3.2 4-1.3-1V21H8v-8l-1.3 1-3.2-4 4.1-3z"/><path d="M9 3c0 2 1 3 3 3s3-1 3-3"/></svg><strong>${t('wardrobe')}</strong><small>${t('wardrobeDesc')}</small></button><button class="card" onclick="show('dress')"><svg class="home-card-icon" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 2 2.3 7.7L22 12l-7.7 2.3L12 22l-2.3-7.7L2 12l7.7-2.3z"/><path d="m19 2 .7 2.3L22 5l-2.3.7L19 8l-.7-2.3L16 5l2.3-.7z"/></svg><strong>Dress Me</strong><small>${t('dressDesc')}</small></button><button class="card" onclick="show('camera')"><svg class="home-card-icon" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="18" height="15" rx="3"/><path d="M8 6 9.5 3h5L16 6"/><circle cx="12" cy="13.5" r="3.5"/></svg><strong>${t('camera')}</strong><small>${t('cameraDesc')}</small></button><button class="card" onclick="show('me')"><svg class="home-card-icon" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 11C8 5 3 5 3 9c0 3 5 4 9 3 4 1 9 0 9-3 0-4-5-4-9 2Z"/><path d="m10 13-3 8 5-3 5 3-3-8"/><circle cx="12" cy="12" r="2"/></svg><strong>${t('me')}</strong><small>${t('meDesc')}</small></button><button class="card" onclick="show('outfits')"><svg class="home-card-icon" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 5.5a5.5 5.5 0 0 0-7.8 0L12 6.6l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 22l8.8-8.7a5.5 5.5 0 0 0 0-7.8Z"/></svg><strong>My Outfits</strong><small>${t('outfitsCard')}</small></button><button class="card" onclick="show('wishlist')"><svg class="home-card-icon" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h16l-1 13H5L4 8Z"/><path d="M9 9V6a3 3 0 0 1 6 0v3"/></svg><strong>Wishlist</strong><small>${t('wishCard')}</small></button></div>`;
+if(page==='home'&&notificationsEnabled&&rareItems().length)h+=`<button class="btn light" style="width:100%;margin-top:16px" onclick="show('rare')">🕰️ ${t('rareReminder')} (${rareItems().length})</button>`;
+if(page==='wardrobe'){let shown=clothes.filter(x=>(filter==='all'||x.category===filter)&&(colorFilter==='all'||(x.color||'unknown')===colorFilter));h=heading(t('wardrobeTitle'),t('wardrobeSub'));h+=`<div class="toolbar"><button class="btn" onclick="show('camera')">${t('add')}</button></div><div class="pills">${categories.map(c=>`<button class="pill ${filter===c?'active':''}" data-filter="${c}">${cat(c)}</button>`).join('')}</div><div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:18px"><label for="color-filter">${t('color')} 🎨</label><select id="color-filter" class="field" style="width:auto;min-width:180px;margin:0">${colorOptions(colorFilter,true)}</select></div>`;h+=shown.length?`<div class="items">${shown.map(x=>`<div class="item"><img src="${x.image}" alt="Clothing"><div class="itemfoot"><span>${colorDot(x.color||'unknown')}${cat(x.category)}</span><button data-delete="${x.id}" aria-label="${t('remove')}">×</button></div><div style="padding:0 10px 12px"><label style="font-size:12px;color:var(--muted)">${t('color')}<select class="field" style="margin:5px 0 0;padding:8px;font-size:13px" data-clothing-color="${safe(x.id)}">${colorOptions(x.color||'unknown')}</select></label></div></div>`).join('')}</div>`:`<div class="empty">♡<p>${t('empty')}</p></div>`}
+if(page==='camera')h=heading(t('cameraTitle'),t('cameraSub'))+`<div class="panel"><p>${t('cameraInfo')}</p><label for="category">${t('category')}</label><select class="field" id="category">${categories.slice(1).map(c=>`<option value="${c}">${cat(c)}</option>`).join('')}</select><label for="clothing-color">${t('color')} 🎨</label><select class="field" id="clothing-color">${colorOptions('unknown')}</select><p class="note">${t('colorHelp')}</p><div class="toolbar"><button class="btn" onclick="pickPhotos(false)">${t('choose')}</button><button class="btn light" onclick="pickPhotos(true)">${t('scan')}</button></div><p class="note">${t('scanHint')}</p><p id="scan-status" role="status" class="note"></p><div id="scan-workspace"></div><p class="note">${t('local')}</p></div>`;
+if(page==='dress'){const groups=[clothes.filter(x=>x.category==='tops'),clothes.filter(x=>['pants','skirts'].includes(x.category))];h=heading(t('dressTitle'),t('dressSub'));h+=`<div class="outfit">${groups.map((g,i)=>`<div class="outfitbox">${i===0?`<div class="toolbar outfit-controls"><button class="btn light" onclick="move(${i},-1)">←</button><span>${t('top')}</span><button class="btn light" onclick="move(${i},1)">→</button></div>`:''}<div class="outfitpic">${g.length?`<img src="${g[((choices[i]%g.length)+g.length)%g.length].image}" alt="Clothing">`:'♡'}</div>${i===1?`<div class="toolbar outfit-controls"><button class="btn light" onclick="move(${i},-1)">←</button><span>${t('bottom')}</span><button class="btn light" onclick="move(${i},1)">→</button></div>`:''}</div>`).join('')}</div><div class="save-outfit"><button class="btn" onclick="saveOutfit()">${isOutfitSaved()?t('savedOutfit'):t('saveOutfit')}</button><button class="btn white" onclick="show('outfits')">My Outfits ♡</button><button class="btn light" onclick="markWorn()">${t('rareWear')}</button></div>${outfitMessage?`<p role="status" style="text-align:center;color:var(--rose)">${outfitMessage}</p>`:''}<p class="note" style="text-align:center">${t('dressInfo')}</p>`}
+if(page==='outfits'){
+ h=heading(t('outfitsTitle'),t('outfitsDesc'))+`<div class="toolbar"><button class="btn light" onclick="show('dress')">✧ ${t('outfitGo')}</button></div>`;
+ h+=outfits.length?`<div class="saved-outfits">${outfits.map(o=>{const top=clothes.find(x=>String(x.id)===o.topId),bottom=clothes.find(x=>String(x.id)===o.bottomId);return `<div class="saved-card"><div class="saved-pictures">${top?`<img src="${top.image}" alt="Top">`:'<div class="empty">♡</div>'}${bottom?`<img src="${bottom.image}" alt="Bottom">`:'<div class="empty">♡</div>'}</div>${!top||!bottom?`<p class="note">${t('outfitMissing')}</p>`:''}<div class="saved-meta"><strong>♡ Outfit</strong><button class="btn light" data-outfit-delete="${o.id}">${t('outfitRemove')}</button></div>${top&&bottom?`<button class="btn white" style="width:100%;margin-top:9px" data-outfit-open="${o.id}">Dress Me ✧</button>`:''}</div>`}).join('')}</div>`:`<div class="empty">♡<p>${t('outfitEmpty')}</p></div>`;
+}
+if(page==='wishlist'){
+ h=heading(t('wishTitle'),t('wishDesc'))+`<div class="toolbar"><button class="btn" onclick="toggleWishForm()">${t('wishAdd')}</button></div>`;
+ if(wishFormOpen)h+=`<div class="panel"><label>${t('wishName')}<input id="wish-title" maxlength="90" class="field" placeholder="${t('wishName')}"></label><label>${t('wishPrice')}<input id="wish-price" maxlength="35" class="field" placeholder="499 kr"></label><label>${t('wishShop')}<input id="wish-shop" maxlength="350" class="field" placeholder="https://..."></label><label>${t('wishPhoto')}<input id="wish-photo" type="file" accept="image/*" class="field"></label><button class="btn" id="wish-submit" onclick="saveWish()">${t('wishSave')}</button></div>`;
+ if(wishMessage)h+=`<p role="status" class="note">${wishMessage}</p>`;
+ h+=wishlist.length?`<div class="items">${wishlist.map(w=>`<div class="item">${w.image?`<img src="${w.image}" alt="${safe(w.title)}">`:`<div style="aspect-ratio:1;display:grid;place-items:center;background:#f9efed;font-size:42px">🛍️</div>`}<div style="padding:12px"><strong style="overflow-wrap:anywhere">${safe(w.title)}</strong>${w.price?`<p style="margin:8px 0">${safe(w.price)}</p>`:''}${w.shop&&!shopLink(w.shop)?`<p class="note">${safe(w.shop)}</p>`:''}${shopLink(w.shop)?`<p><a href="${safe(shopLink(w.shop))}" target="_blank" rel="noopener noreferrer" style="color:var(--rose)">${t('wishOpen')} ↗</a></p>`:''}<button class="btn light" style="margin-top:8px" data-wish-delete="${safe(w.id)}">${t('wishRemove')}</button></div></div>`).join('')}</div>`:`<div class="empty">♡<p>${t('wishEmpty')}</p></div>`;
+}
+if(page==='rare'){
+ const due=rareItems(),sell=clothes.filter(x=>x.reviewStatus==='sell'),upcoming=clothes.filter(x=>!isRare(x)&&x.reviewStatus!=='sell').sort((a,b)=>daysUntilReview(a)-daysUntilReview(b));
+ const panels=[{n:due.length,label:t('rareDue')},{n:upcoming.length,label:t('rareUpcoming')},{n:sell.length,label:t('rareSellList')}];
+ h=heading(t('rareTitle'),t('rareDesc'))+`<div class="panel"><h3>${t('rareSummary')}</h3><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;text-align:center">${panels.map(p=>`<div style="background:#fff5f6;border-radius:14px;padding:12px 4px"><strong style="display:block;font-size:24px;color:#a55c72">${p.n}</strong><small>${p.label}</small></div>`).join('')}</div><label style="display:block;margin-top:16px">${t('rarePeriod')}</label><div style="display:flex;gap:8px;flex-wrap:wrap"><input class="field" id="rare-amount" type="number" min="1" max="3650" value="${rareDaysMode?rareDays:rareMonths}" style="width:95px;margin:5px 0"><select id="rare-unit" class="field" style="width:auto;margin:5px 0"><option value="months" ${!rareDaysMode?'selected':''}>${t('rareMonths')}</option><option value="days" ${rareDaysMode?'selected':''}>${t('rareDays')}</option></select><button class="btn" onclick="saveRarePrefs()">${t('rareSet')}</button></div><p class="note">${t('rareTip')}</p>${rareSaveMessage?`<p role="status" aria-live="polite" style="margin:12px 0 0;padding:12px 14px;background:#fce9ed;color:#794456;border-radius:12px;font-weight:600">${rareSaveMessage}</p>`:''}</div>`;
+ h+=`<div class="pills" style="margin:16px 0">${[['review',t('rareDue')],['upcoming',t('rareUpcoming')],['sell',t('rareSellList')],['all',t('rareAll')]].map(([id,title])=>`<button class="pill ${rareTab===id?'active':''}" data-rare-tab="${id}">${title}</button>`).join('')}</div>`;
+ const items=rareTab==='review'?due:rareTab==='upcoming'?upcoming:rareTab==='sell'?sell:clothes;
+ h+=items.length?`<div class="items">${items.map(x=>`<div class="item"><img src="${x.image}" alt="${safe(cat(x.category))}"><div style="padding:12px"><strong>${cat(x.category)} · ${colorName(x.color||'unknown')}</strong><p class="note">${x.lastWornAt?t('rareLast')+': '+niceDate(x.lastWornAt):t('rareNoWear')} · ${t('rareCount')}: ${x.wearCount||0}</p>${!isRare(x)&&x.reviewStatus!=='sell'?`<p class="note">${t('rareDaysLeft')}: ${daysUntilReview(x)}</p>`:''}${x.reviewStatus==='sell'?`<p class="note">${t('rareSellNote')}</p>`:''}<div style="display:flex;gap:6px;flex-wrap:wrap"><button class="btn light" data-rare-worn="${safe(x.id)}">${t('rareSingleWorn')}</button>${x.reviewStatus==='sell'?`<button class="btn white" data-rare-restore="${safe(x.id)}">${t('rareRestore')}</button>`:`${isRare(x)?`<button class="btn white" data-rare-keep="${safe(x.id)}">${t('rareKeep')}</button>`:''}<button class="btn white" data-rare-sell="${safe(x.id)}">${t('rareSell')}</button>`}</div></div></div>`).join('')}</div>`:`<div class="empty">♡<p>${rareTab==='review'?t('rareNone'):rareTab==='upcoming'?t('rareNoUpcoming'):rareTab==='sell'?t('rareNoSell'):t('rareNotYet')}</p></div>`;
+}
+if(page==='me')h=heading(t('meTitle'),t('meSub'))+`<div class="panel"><div style="font-size:40px">🎀</div><h2>${safe(name||t('styleLover'))}</h2><p>${clothes.length} ${t('itemCount')} · ${outfits.length} ${t('outfitCount')}</p><button class="btn light" onclick="show('outfits')">♡ My Outfits</button><label>${t('yourName')}<input class="field" id="username" maxlength="40" value="${safe(name)}" placeholder="${t('yourName')}"></label><button class="btn" onclick="saveName()">${t('saveName')}</button></div>`;
+if(page==='about')h=`<button class="back" onclick="show('settings')">${t('back')}</button><div class="settings-hero"><div class="settings-hero-icon">♡</div><div><h2>${t('settingsAbout')}</h2><p>${t('aboutPurpose')}</p></div></div><div class="auth-panel"><h3>Styler X ♡</h3><p>${t('aboutDescription')}</p><div class="about-version"><span>${t('aboutVersion')}</span><strong>1.0 · Preview</strong></div><p class="auth-small">${t('aboutStorage')}</p></div><div class="settings-footer">${t('aboutMade')}</div>`;
+if(page==='auth')h=authView();
+if(page==='settings')h=`<button class="back" onclick="show('home')">${t('back')}</button>
+<div class="settings-hero"><div class="settings-hero-icon">⚙</div><div><h2>${t('settings')}</h2><p>${t('settingsSub')}</p></div></div>
+<section class="settings-group"><h3>${t('settingsPreferences')}</h3><div class="settings-list">
+<div class="settings-row"><div class="settings-symbol">◐</div><div class="settings-row-body"><div class="settings-row-title">${t('themeTitle')}</div><div class="settings-row-sub">${t('themeHint')}</div></div></div>
+<div class="settings-theme-row" role="group" aria-label="${t('themeTitle')}">
+${[['pink','themePink'],['black','themeBlack'],['white','themeWhite'],['gray','themeGray']].map(([key,label])=>`<button class="theme-choice" aria-pressed="${appTheme===key}" onclick="setTheme('${key}')"><span class="theme-preview ${key}"><i></i><i></i></span>${t(label)} ${appTheme===key?'✓':''}</button>`).join('')}
+</div>
+<div class="settings-row"><div class="settings-symbol">🌐</div><div class="settings-row-body"><div class="settings-row-title">${t('language')}</div><div class="settings-row-sub">${t('settingsLanguageHint')}</div></div><select id="settings-language" class="settings-select" aria-label="${t('language')}" onchange="setLanguage(this.value)"><option value="sv" ${lang==='sv'?'selected':''}>Svenska</option><option value="en" ${lang==='en'?'selected':''}>English</option></select></div>
+<div class="settings-row"><div class="settings-symbol"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/><path d="M10 21h4"/></svg></div><div class="settings-row-body"><div class="settings-row-title">${t('notifTitle')}</div><div class="settings-row-sub">${t('notifHint')}</div></div><label class="styler-toggle" aria-label="${t('notifTitle')}"><input type="checkbox" ${notificationsEnabled?'checked':''} onchange="setNotifications(this.checked)"><span class="styler-toggle-track"></span></label></div>
+<div class="settings-row"><div class="settings-symbol">♙</div><div class="settings-row-body"><div class="settings-row-title">${t('authTitle')}</div><div class="settings-row-sub">${t('authHint')}</div></div><button class="settings-action" onclick="show('auth')">›</button></div>
+</div></section>
+
+<section class="settings-group"><h3>${t('settingsAbout')}</h3><div class="settings-list">
+<div class="settings-row"><div class="settings-symbol">ⓘ</div><div class="settings-row-body"><div class="settings-row-title">${t('settingsAbout')}</div><div class="settings-row-sub">${t('settingsAboutHint')}</div></div><button class="settings-action" onclick="show('about')" aria-label="${t('settingsAbout')}">›</button></div>
+</div></section><p class="note" style="text-align:center;padding:0 12px">${t('settingsPrivacy')}</p><p class="note" style="text-align:center;padding:0 12px">${t('notifExplain')}</p><div class="settings-footer">Styler X ♡</div>`;
+content.innerHTML=h;
+document.querySelectorAll('[data-tab]').forEach(b=>b.classList.toggle('active',b.dataset.tab===page));
+const bottomSettings=document.getElementById('bottom-settings');if(bottomSettings)bottomSettings.querySelector('.nav-label').textContent=t('settings');
+document.querySelectorAll('[data-filter]').forEach(b=>b.onclick=()=>{filter=b.dataset.filter;render()});
+document.querySelectorAll('[data-delete]').forEach(b=>b.onclick=()=>remove(b.dataset.delete));
+document.querySelectorAll('[data-outfit-delete]').forEach(b=>b.onclick=()=>deleteOutfit(b.dataset.outfitDelete));
+document.querySelectorAll('[data-outfit-open]').forEach(b=>b.onclick=()=>openOutfit(b.dataset.outfitOpen));
+document.querySelectorAll('[data-rare-tab]').forEach(b=>b.onclick=()=>setRareTab(b.dataset.rareTab));
+document.querySelectorAll('[data-rare-worn]').forEach(b=>b.onclick=()=>markSingleWorn(b.dataset.rareWorn));
+document.querySelectorAll('[data-rare-keep]').forEach(b=>b.onclick=()=>rareDecision(b.dataset.rareKeep,'keep'));
+document.querySelectorAll('[data-rare-sell]').forEach(b=>b.onclick=()=>rareDecision(b.dataset.rareSell,'sell'));
+document.querySelectorAll('[data-rare-restore]').forEach(b=>b.onclick=()=>rareDecision(b.dataset.rareRestore,'restore'));
+document.querySelectorAll('[data-wish-delete]').forEach(b=>b.onclick=()=>confirmWishDelete(b));
+const cf=document.getElementById('color-filter');if(cf)cf.onchange=()=>{colorFilter=cf.value;render()};
+document.querySelectorAll('[data-clothing-color]').forEach(sel=>{sel.value=clothes.find(x=>String(x.id)===sel.dataset.clothingColor)?.color||'unknown';sel.onchange=()=>changeClothingColor(sel.dataset.clothingColor,sel.value)});
+
+}
+function move(i,n){choices[i]+=n;outfitMessage='';render()}
+function saveName(){name=document.getElementById('username').value.trim();try{localStorage.setItem('stylerx_name',name)}catch(e){}render()}
+function resize(file){return new Promise((ok,no)=>{const url=URL.createObjectURL(file),img=new Image();img.onload=()=>{const c=document.createElement('canvas');let k=Math.min(1,900/Math.max(img.width,img.height));c.width=Math.max(1,Math.round(img.width*k));c.height=Math.max(1,Math.round(img.height*k));c.getContext('2d').drawImage(img,0,0,c.width,c.height);URL.revokeObjectURL(url);ok(c.toDataURL('image/jpeg',.75))};img.onerror=()=>{URL.revokeObjectURL(url);no(Error('Image unavailable'))};img.src=url})}
+let scanMode=false,selectedFile=null,selectedCategory='other',selectedColor='unknown',scannedImage=null,scanBusy=false;
+function pickPhotos(scan){scanMode=scan;document.getElementById('photos').click()}
+function status(message){const el=document.getElementById('scan-status');if(el)el.textContent=message}
+function scanWorkspace(html){const el=document.getElementById('scan-workspace');if(el)el.innerHTML=html}
+function scanPreview(src){
+ const preview=document.getElementById('scan-preview');
+ if(preview){preview.src=src;preview.style.display='block'}
+}
+async function whiteBackground(blob){
+ const url=URL.createObjectURL(blob);
+ try{
+  const img=new Image();
+  await new Promise((resolve,reject)=>{img.onload=resolve;img.onerror=reject;img.src=url});
+  const c=document.createElement('canvas');
+  const scale=Math.min(1,900/Math.max(img.width,img.height));
+  c.width=Math.max(1,Math.round(img.width*scale));c.height=Math.max(1,Math.round(img.height*scale));
+  const ctx=c.getContext('2d');ctx.fillStyle='#ffffff';ctx.fillRect(0,0,c.width,c.height);
+  ctx.drawImage(img,0,0,c.width,c.height);
+  return c.toDataURL('image/jpeg',0.86);
+ }finally{URL.revokeObjectURL(url)}
+}
+let removalModule;
+async function scanPhoto(file){
+ status(t('scanning'));
+ if(!removalModule)removalModule=import('https://cdn.jsdelivr.net/npm/@imgly/background-removal@1.7.0/+esm');
+ const mod=await removalModule;
+ const removeBackground=mod.removeBackground||mod.default;
+ if(typeof removeBackground!=='function')throw Error('AI module unavailable');
+ const cutout=await removeBackground(file,{progress:(key,current,total)=>{
+  if(total>0)status(t('scanning')+' '+Math.round(current/total*100)+'%');
+ }});
+ status(t('scanWait'));
+ return await whiteBackground(cutout);
+}
+function scanPanel(){
+ scanWorkspace(`<div class="panel" style="margin-top:12px"><img id="scan-preview" alt="Preview" style="width:100%;max-height:290px;object-fit:contain;border-radius:15px;background:white"><div class="toolbar"><button class="btn" id="start-scan" onclick="startScan()">${t('scanStart')}</button><button class="btn white" onclick="cancelScan()">${t('scanCancel')}</button></div></div>`);
+}
+function cancelScan(){if(scanBusy)return;selectedFile=null;scannedImage=null;scanWorkspace('');status('')}
+async function startScan(){
+ if(!selectedFile||scanBusy)return;
+ scanBusy=true;
+ const btn=document.getElementById('start-scan');if(btn)btn.disabled=true;
+ try{
+  const image=await scanPhoto(selectedFile);
+  scannedImage=image;scanPreview(image);status(t('scanDone'));
+  scanWorkspace(`<div class="panel" style="margin-top:12px"><img src="${image}" alt="Scanned clothing" style="width:100%;max-height:290px;object-fit:contain;border-radius:15px;background:white"><div class="toolbar"><button class="btn" onclick="saveScan()">${t('scanSave')}</button><button class="btn white" onclick="cancelScan()">${t('scanCancel')}</button></div></div>`);
+ }catch(err){
+  console.error('Styler X scan error',err);
+  status(t('scanError')+' '+(err&&err.message?err.message:''));
+  if(btn)btn.disabled=false;
+ }finally{scanBusy=false}
+}
+async function saveScan(){
+ if(!scannedImage)return;
+ try{await save({id:String(Date.now())+Math.random(),image:scannedImage,category:selectedCategory,color:selectedColor,trackedAt:new Date().toISOString(),wearCount:0});selectedFile=null;scannedImage=null;show('wardrobe')}
+ catch(err){status(t('error')+' '+err.message)}
+}
+document.getElementById('photos').addEventListener('change',async e=>{
+ const files=Array.from(e.target.files);
+ const category=document.getElementById('category')?.value||'other';
+ const color=document.getElementById('clothing-color')?.value||'unknown';
+ const scanning=scanMode;e.target.value='';
+ if(!files.length)return;
+ if(scanning){
+  selectedFile=files[0];selectedCategory=category;selectedColor=color;scannedImage=null;
+  scanPanel();
+  const url=URL.createObjectURL(selectedFile);
+  const img=document.getElementById('scan-preview');
+  img.onload=()=>URL.revokeObjectURL(url);
+  img.onerror=()=>URL.revokeObjectURL(url);
+  img.src=url;
+  status(t('scanReady'));
+  return;
+ }
+ for(const file of files){
+  if(!file.type.startsWith('image/'))continue;
+  status(t('uploading'));
+  try{const image=await resize(file);await save({id:String(Date.now())+Math.random(),image,category,color,trackedAt:new Date().toISOString(),wearCount:0})}
+  catch(err){status(t('error')+' '+err.message);return}
+ }
+ show('wardrobe');
+});
+function exportClothes(){const blob=new Blob([JSON.stringify({name,clothes,outfits,wishlist,rarePreferences:{months:rareMonths,days:rareDays,daysMode:rareDaysMode}})],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='styler-x-backup.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1500)}
+render();load();loadWishlist();if(document.readyState==='complete')initAuth();else window.addEventListener('load',initAuth);
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.57.0/dist/umd/supabase.min.js"></script>
+</body></html>
